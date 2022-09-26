@@ -11,7 +11,7 @@ department_choices = {
     '10': 'Management'
 }
 
-positiontitle_choices = {
+title_choices = {
     'Production':'Production',
     'Inspection':'Inspection',
     'Team Lead':'TeamLead',

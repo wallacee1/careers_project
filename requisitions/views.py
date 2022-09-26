@@ -1,11 +1,11 @@
 from django.shortcuts import get_object_or_404, render
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
-from .choices import department_choices, positiontitle_choices
+from .choices import department_choices, title_choices
 
 from .models import Requisition
 
 def index(request):
-    requisitions = Requisition.objects.order_by('-list_date').filter(is_published=True)
+    requisitions = Requisition.objects.order_by('-dateofrequisition').filter(is_published=True)
 
     paginator = Paginator(requisitions, 6)
     page = request.GET.get('page')
@@ -26,7 +26,7 @@ def requisition(request, requisition_id):
     return render(request, 'requisitions/requisitions.html', context)
 
 def search(request):
-    queryset_list = Requisition.objects.order_by('-list_date')
+    queryset_list = Requisition.objects.order_by('-dateofrequisition')
 
     #Keywords
     if 'keywords' in request.GET:
@@ -41,13 +41,13 @@ def search(request):
             queryset_list = queryset_list.filter(department_iexact=department)
 
     #PositionTitle
-    if 'positiontitle' in request.GET:
-        positiontitle = request.GET['positiontitle']
-        if positiontitle:
-            queryset_list = queryset_list.filter(positiontitle_iexaxt=positiontitle)
+    if 'title' in request.GET:
+        title = request.GET['title']
+        if title:
+            queryset_list = queryset_list.filter(title_iexaxt=title)
     context = {
         'department_choices': department_choices,
-        'positiontitle_choices': positiontitle_choices,
+        'title_choices': title_choices,
         'requisitions': queryset_list,
         'values': request.GET
     }    

@@ -5,8 +5,9 @@ from hiringsupervisors.models import Hiringsupervisors
 class Requisition(models.Model):
     hiringsupervisors = models.ForeignKey(Hiringsupervisors, on_delete=models.DO_NOTHING)
     department = models.CharField(max_length=200)
-    positiontitle = models.CharField(max_length=200)
-    wagerange = models.FloatField(max_length=200)
+    title = models.CharField(max_length=200)
+    lowwage = models.DecimalField(max_digits=8, decimal_places=2)
+    highwage = models.DecimalField(max_digits=8, decimal_places=2)
     essentialfunctions = models.TextField()
     skillsrequired = models.TextField()
     education_knowledgerequired = models.TextField()
