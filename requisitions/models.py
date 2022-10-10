@@ -1,9 +1,9 @@
 from django.db import models
 from datetime import datetime
-from hiringsupervisors.models import Hiringsupervisors
+from manager.models import Manager
 
 class Requisition(models.Model):
-    hiringsupervisors = models.ForeignKey(Hiringsupervisors, on_delete=models.DO_NOTHING)
+    manager = models.ForeignKey(Manager, on_delete=models.DO_NOTHING)
     department = models.CharField(max_length=200)
     title = models.CharField(max_length=200)
     lowwage = models.DecimalField(max_digits=8, decimal_places=2)

@@ -2,6 +2,8 @@
 
 {% load humanize %}
 
+{% block title %} | Browse Openings {% endblock %}
+
 {% block content %}
 <section id="showcase-inner" class="py-5 text-white">
     <div class="container">
@@ -52,7 +54,7 @@
                   <div class="col-6">
                     <i class="fa fa-cog" aria-hidden="true"></i> Essential Functions: {{ requisition.essentialfunctions }}</div>
                   <div class="col-6">
-                    <<i class="fa fa-list" aria-hidden="true"></i> Skills: {{ requisition.skillsrequired }}</div>
+                    <i class="fa fa-list" aria-hidden="true"></i> Skills: {{ requisition.skillsrequired }}</div>
                 </div>
                 <div class="row py-2 text-secondary">
                   <div class="col-6">
@@ -63,7 +65,7 @@
                 <hr>
                 <div class="row py-2 text-secondary">
                   <div class="col-12">
-                    <i class="fas fa-user"></i> Supervisor: {{ requisition.hiringsupervisors  }}</div>
+                    <i class="fas fa-user"></i> Manager: {{ requisition.manager  }}</div>
                 </div>
                 <div class="row text-secondary pb-2">
                   <div class="col-6">

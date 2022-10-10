@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, render
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
-from .choices import department_choices, title_choices
+from .choices import price_choices, bedroom_choices, state_choices
 
 from .models import Requisition
 
@@ -26,29 +26,42 @@ def requisition(request, requisition_id):
     return render(request, 'requisitions/requisitions.html', context)
 
 def search(request):
-    queryset_list = Requisition.objects.order_by('-dateofrequisition')
+  queryset_list = Requisition.objects.order_by('-dateofrequisition')
 
-    #Keywords
-    if 'keywords' in request.GET:
-        keywords = request.GET['keywords']
-        if keywords:
-            queryset_list = queryset_list.filter(description_icontains=keywords)
+  # Keywords
+  #if 'keywords' in request.GET:
+  #  keywords = request.GET['keywords']
+  #  if keywords:
+  #    queryset_list = queryset_list.filter(description__icontains=keywords)
 
-    #Department
-    if 'department' in request.GET:
-        department = request.GET['department']
-        if department:
-            queryset_list = queryset_list.filter(department_iexact=department)
+  # City
+  if 'city' in request.GET:
+    city = request.GET['city']
+    if city:
+      queryset_list = queryset_list.filter(city__iexact=city)
 
-    #PositionTitle
-    if 'title' in request.GET:
-        title = request.GET['title']
-        if title:
-            queryset_list = queryset_list.filter(title_iexaxt=title)
-    context = {
-        'department_choices': department_choices,
-        'title_choices': title_choices,
-        'requisitions': queryset_list,
-        'values': request.GET
-    }    
-    return render(request, 'requisitions/search.html', context)
+  # State
+  if 'state' in request.GET:
+    state = request.GET['state']
+    if state:
+      queryset_list = queryset_list.filter(state__iexact=state)
+
+  # Bedrooms
+  if 'bedrooms' in request.GET:
+    bedrooms = request.GET['bedrooms']
+    if bedrooms:
+      queryset_list = queryset_list.filter(bedrooms__lte=bedrooms)
+
+  # Price
+  if 'price' in request.GET:
+    price = request.GET['price']
+    if price:
+      queryset_list = queryset_list.filter(price__lte=price)
+
+  context = {
+    'state_choices': state_choices,
+    'bedroom_choices': bedroom_choices,
+    'price_choices': price_choices,
+    'listings': queryset_list,
+    'values': request.GET
+  }

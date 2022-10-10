@@ -2,13 +2,15 @@
 
 {% load static %}
 
+{% block title %} | About Us {% endblock %}
+
 {% block content %}
 <section id="showcase-inner" class="py-5 text-white">
     <div class="container">
       <div class="row text-center">
         <div class="col-md-12">
-          <h1 class="display-4">About BT Real Estate</h1>
-          <p class="lead">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, pariatur!</p>
+          <h1 class="display-4">About Tube Fab/Roman Engineering</h1>
+          <p class="lead">Privately owned and operated manufacturing company based in Afton, MI where it has provided quality jobs and service for over 50 years!</p>
         </div>
       </div>
     </div>
@@ -33,22 +35,53 @@
     <div class="container">
       <div class="row">
         <div class="col-md-8">
-          <h2>We Search For The Perfect Home</h2>
-          <p class="lead">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, pariatur!</p>
           <img src="{% static 'img/about.jpg' %}" alt="">
-          <p class="mt-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis esse officia repudiandae ad saepe ex, amet
-            neque quod accusamus rem quia magnam magni dolorum facilis ullam minima perferendis? Exercitationem at quaerat
-            commodi id libero eveniet harum perferendis laborum molestias quia.</p>
+          <h2>Values</h2>
+          <p class="lead">Tube Fab/Roman Engineering implores the following set of values for the business:</p> 
+          <p class="mt-4">
+            <ul>
+              <li>
+                <strong>Quality</strong> - "Pursuing excellence in everything we do."
+              </li>
+              <li>
+                <strong>Integrity</strong> - "Doing what we say and treating others as we wish to be treated."
+              </li>
+              <li>
+                <strong>Innovation</strong> - "Passionate about developing better methods for tomorrow."
+              </li>
+              <li>
+                <strong>Service</strong> - "Daily earning the trust of our customers, co-workers and our community."
+              </li>
+            </ul>
+          </p>
+          <h2>Vision</h2>
+          <p class="lead">Tube Fab/Roman Engineering vision for the business:</p> 
+          <p class="mt-4">
+            <ul>
+              <li>
+                "Building a better future for our people, and our community through innovation, learning and trust."
+              </li>
+            </ul>
+          </p>
+          <h2>Mission</h2>
+          <p class="lead">Tube Fab/Roman Engineering mission for the business:</p> 
+          <p class="mt-4">
+            <ul>
+              <li>
+                "To provide an outstanding experience for our customers by empowering employees to make meaningful contributions in a safe and rewarding environment."
+              </li>
+            </ul>
+          </p>
         </div>
         <div class="col-md-4">
-          {% if mvp_hiringsupervisors %}
-            {% for hiringsupervisor in mvp_hiringsupervisor %}
+          {% if mvp_manager %}
+            {% for manager in mvp_manager %}
             <div class="card">
-              <img class="card-img-top" src="{{ hiringsupervisor.photo.url }}" alt="Seller of the month">
+              <img class="card-img-top" src="{{ manager.photo.url }}" alt="Seller of the month">
               <div class="card-body">
                 <h5 class="card-title">Employee Highlight Of The Month</h5>
-                <h6 class="text-secondary">{{ hiringsupervisor.name }}</h6>
-                <p class="card-text">{{ hiringsupervisor.description }}     
+                <h6 class="text-secondary">{{ manager.name }}</h6>
+                <p class="card-text">{{ manager.description }}     
                 </p>
               </div>
             </div>
@@ -64,7 +97,7 @@
     <h2 class="display-4">We Work For You</h2>
     <h4>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem velit aperiam, unde aliquid at similique!</h4>
     <hr>
-    <a href="listings.html" class="btn btn-secondary text-white btn-lg">View Our Featured Listings</a>
+    <a href="requisitions.html" class="btn btn-secondary text-white btn-lg">View Our Positions</a>
   </section>
 
   <!-- Team -->
@@ -72,23 +105,23 @@
     <div class="container">
       <h2 class="text-center">Our Team</h2>
       <div class="row text-center">
-        {% if hiringsupervisors %}
-          {% for hiringsupervisor in hiringsupervisors %}
+        {% if manager %}
+          {% for managers in manager %}
           <div class="col-md-4">
-            <img src="{{ hiringsupervisor.photo.url }}" alt="" class="rounded-circle mb-3">
-            <h4>{{ hiringsupervisor.name }}</h4>
+            <img src="{{ manager.photo.url }}" alt="" class="rounded-circle mb-3">
+            <h4>{{ manager.name }}</h4>
             <p class="text-success">
-              <i class="fas fa-award text-success mb-3"></i> Supervisor</p>
+              <i class="fas fa-award text-success mb-3"></i> Manager</p>
             <hr>
             <p>
-              <i class="fas fa-phone"></i> {{ hiringsupervisor.phone }}</p>
+              <i class="fas fa-phone"></i> {{ manager.phone }}</p>
             <p>
-              <i class="fas fa-envelope-open"></i> {{ hiringsupervisor.email }}</p>
+              <i class="fas fa-envelope-open"></i> {{ manager.email }}</p>
           </div>
           {% endfor %}
         {% else %}
           <div class="col-md-12">
-            <p>No Supervisors Available</p>
+            <p>No Managers Available</p>
           </div>
 
         {% endif %}

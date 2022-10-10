@@ -3,7 +3,7 @@ from django.contrib import admin
 from .models import Requisition
 
 class RequisitionAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'is_published', 'lowwage', 'highwage', 'dateofrequisition', 'hiringsupervisors')
+    list_display = ('id', 'title', 'is_published', 'lowwage', 'highwage', 'dateofrequisition', 'manager')
     list_display_links = ('id', 'title')
     list_filter = ('title',)
     list_editable = ('is_published',)

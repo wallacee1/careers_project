@@ -1,11 +1,11 @@
 from django.contrib import admin
 
-from .models import Hiringsupervisors
+from .models import Manager
 
-class HiringsupervisorsAdmin(admin.ModelAdmin):
+class ManagerAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'email', 'hiredate')
     list_display_links = ('id', 'name')
     search_fields = ('name',)
     list_per_page = 25
 
-admin.site.register(Hiringsupervisors, HiringsupervisorsAdmin)
+admin.site.register(Manager, ManagerAdmin)
