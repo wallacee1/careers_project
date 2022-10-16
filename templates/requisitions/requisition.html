@@ -2,16 +2,14 @@
 
 {% load humanize %}
 
-{% block title %} | {{ requistion.title }} {% endblock %}
+{% block title %} | {{ requisition.title }} {% endblock %}
 
 {% block content %}
-
 <section id="showcase-inner" class="py-5 text-white">
     <div class="container">
       <div class="row text-center">
         <div class="col-md-12">
           <h1 class="display-4">{{ requisition.title }}</h1>
-          <p class="lead">
         </div>
       </div>
     </div>
@@ -26,7 +24,7 @@
             <a href="{% url 'index' %}">Home</a>
           </li>
           <li class="breadcrumb-item">
-            <a href="{% url 'requisitions' %}">Openings</a>
+            <a href="{% url 'requisitions' %}">Requisitions</a>
           </li>
           <li class="breadcrumb-item active">{{ requisition.title }}</li>
         </ol>
@@ -40,7 +38,7 @@
   <!-- Listing -->
   <section id="listing" class="py-4">
     <div class="container">
-      <a href="{% url 'requisitions' %}" class="btn btn-light mb-4">Back To Openings</a>
+      <a href="{% url 'requisitions' %}" class="btn btn-light mb-4">Back To Requisitions</a>
       <div class="row">
         <div class="col-md-9">
           <!-- Home Main Image -->
@@ -95,36 +93,33 @@
             <div class="col-md-6">
               <ul class="list-group list-group-flush">
                 <li class="list-group-item text-secondary">
-                  <i class="fas fa-money-bill-alt"></i> Wage:
-                  <span class="float-right">${{ requisition.lowwage | intcomma }}-${{ requisition.highwage }} per Hour</span>
+                  <i class="fas fa-money-bill-alt"></i> Wage Range:
+                  <span class="badge badge-secondary text-white">${{ requisition.lowwage | intcomma }}-${{ requisition.highwage }} per Hour</span>
                 </li>
                 <li class="list-group-item text-secondary">
-                    <i class="fa fa-cog" aria-hidden="true"></i> Essential Functions:
+                  <i class="fa fa-cog" aria-hidden="true"></i> Essential Functions:
                   <span class="float-right">{{ requisition.essentialfunctions }}</span>
                 </li>
                 <li class="list-group-item text-secondary">
-                    <i class="fa fa-list" aria-hidden="true"></i> Skills:
+                  <i class="fa fa-list" aria-hidden="true"></i> Skills:
                   <span class="float-right">{{ requisition.skillsrequired }}</span>
                 </li>
                 <li class="list-group-item text-secondary">
-                    <i class="fa fa-graduation-cap" aria-hidden="true"></i> Education/Knowledge Required:
-                  <span class="float-right">{{ requisition.education_knowledgerequired }}</span>
+                  <i class="fa fa-graduation-cap" aria-hidden="true"></i> Education/Knowledge Required:
+                  <span class="float-right">{{ requisition.experiencerequired }}
+                  </span>
                 </li>
               </ul>
             </div>
             <div class="col-md-6">
               <ul class="list-group list-group-flush">
                 <li class="list-group-item text-secondary">
-                    <i class="fa fa-id-card" aria-hidden="true"></i> Experience Required:
-                  <span class="float-right">{{ requisition.experiencerequired }} Years</span>
-                </li>
-                <li class="list-group-item text-secondary">
-                  <i class="fas fa-calendar"></i> Opening Date:
+                  <i class="fas fa-calendar"></i> Requisition Date:
                   <span class="float-right">{{ requisition.dateofrequisition }}</span>
                 </li>
                 <li class="list-group-item text-secondary">
-                  <i class="fas fa-user"></i> Manager:
-                  <span class="float-right">{{ requisition.manager  }}
+                  <i class="fas fa-bed"></i> Manager:
+                  <span class="float-right">{{ requisition.manager }}
                   </span>
                 </li>
 
@@ -136,15 +131,13 @@
           <!-- Description -->
           <div class="row mb-5">
             <div class="col-md-12">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia recusandae esse reiciendis officia omnis non rerum dicta
-              cupiditate nostrum molestias deserunt aut minus inventore animi atque, consequuntur ad fugit. Possimus culpa
-              blanditiis repellendus ipsa similique ullam, natus error dolor harum.
+                {{ requisition.description }}
             </div>
           </div>
         </div>
         <div class="col-md-3">
           <div class="card mb-3">
-            <img class="card-img-top" src="{{ requisition.manager.photo.url }}" alt="Manager">
+            <img class="card-img-top" src="{{ listing.realtor.photo.url }}" alt="">
             <div class="card-body">
               <h5 class="card-title">Position Manager</h5>
               <h6 class="text-secondary">{{ requisition.manager }}</h6>
@@ -161,7 +154,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="inquiryModalLabel">Make An Inquiry</h5>
+          <h5 class="modal-title" id="inquiryModalLabel">Apply</h5>
           <button type="button" class="close" data-dismiss="modal">
             <span>&times;</span>
           </button>
@@ -174,10 +167,10 @@
             {% else %}
               <input type="hidden" name="user_id" value="0">
             {% endif %}
-            <input type="hidden" name="manager_email" value="{{ requisition.manager.email }}">
-            <input type="hidden" name="requisition_id" value="{{ requisition.id }}">
+            <input type="hidden" name="realtor_email" value="{{ requisition.realtor.email }}">
+            <input type="hidden" name="listing_id" value="{{ requisition.id }}">
             <div class="form-group">
-              <label for="property_name" class="col-form-label">Opening:</label>
+              <label for="property_name" class="col-form-label">Position:</label>
               <input type="text" name="listing" class="form-control" value="{{ requisition.title }}">
             </div>
             <div class="form-group">
@@ -203,5 +196,4 @@
       </div>
     </div>
   </div>
-
 {% endblock %}
